@@ -20,7 +20,6 @@ indra {
 dependencies {
     compileOnly("io.github.waterfallmc:waterfall-api:1.18-R0.1-SNAPSHOT")
     implementation("org.spongepowered:configurate-hocon:4.1.2")
-    implementation("net.kyori:adventure-text-minimessage:4.10.0")
     implementation("net.kyori:adventure-platform-bungeecord:4.1.0")
 }
 
@@ -37,4 +36,10 @@ tasks {
     build {
         dependsOn(shadowJar)
     }
+}
+
+bungee {
+    main = "fi.fabianadrian.hubcommand.HubCommand"
+    name = rootProject.name
+    author = "FabianAdrian"
 }

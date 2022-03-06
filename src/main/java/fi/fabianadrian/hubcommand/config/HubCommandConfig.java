@@ -1,7 +1,7 @@
 package fi.fabianadrian.hubcommand.config;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.util.HashSet;
@@ -27,21 +27,32 @@ public final class HubCommandConfig {
         return this.messagesSection;
     }
 
+    @ConfigSerializable
     public static final class MessagesSection {
-        private String alreadyConnected = "<red>You are already connected to this server!</red>";
-        private String playerOnlyCommand = "<red>Only players can use this command!</red>";
-        private String serverDisabled = "<red>You can't use that command here!</red>";
+        private String alreadyConnected = "You are already connected to this server!";
+        private String playerOnlyCommand = "Only players can use this command!";
+        private String serverDisabled = "You can't use that command here!";
+        private String invalidPlayer = "Could not find that player!";
+        private String sendingPlayer = "Sending target player to Hub";
 
         public Component alreadyConnected() {
-            return MiniMessage.miniMessage().deserialize(this.alreadyConnected);
+            return Component.text(this.alreadyConnected, NamedTextColor.RED);
         }
 
         public Component playerOnlyCommand() {
-            return MiniMessage.miniMessage().deserialize(this.playerOnlyCommand);
+            return Component.text(this.playerOnlyCommand, NamedTextColor.RED);
         }
 
         public Component serverDisabled() {
-            return MiniMessage.miniMessage().deserialize(this.serverDisabled);
+            return Component.text(this.serverDisabled, NamedTextColor.RED);
+        }
+
+        public Component invalidPlayer() {
+            return Component.text(this.invalidPlayer, NamedTextColor.RED);
+        }
+
+        public Component sendingPlayer() {
+            return Component.text(this.sendingPlayer, NamedTextColor.GREEN);
         }
     }
 }
